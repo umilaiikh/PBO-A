@@ -1,0 +1,25 @@
+
+/**
+ * Write a description of class Dosen here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Dosen {
+    private String nip;
+    private String nama;
+
+    public Dosen(String nip, String nama) {
+        this.nip = nip;
+        this.nama = nama;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void tampilData() {
+        System.out.println("NIP   : " + nip);
+        System.out.println("Nama  : " + nama);
+    }
+}
