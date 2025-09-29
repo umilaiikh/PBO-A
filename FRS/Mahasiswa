@@ -1,0 +1,36 @@
+
+/**
+ * Write a description of class Mahasiswa here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.ArrayList;
+public class Mahasiswa {
+    private String nim;
+    private String nama;
+    private ArrayList<Matkul> daftarMK = new ArrayList<>();
+
+    public Mahasiswa(String nim, String nama) {
+        this.nim = nim;
+        this.nama = nama;
+    }
+
+    public String getNim() {
+        return nim;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void ambilMK(Matkul mk) {
+        daftarMK.add(mk);
+        mk.tambahMahasiswa(this); 
+    }
+
+    public void tampilData() {
+        System.out.println("NIM   : " + nim);
+        System.out.println("Nama  : " + nama);
+    }
+}
