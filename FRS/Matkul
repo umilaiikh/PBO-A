@@ -1,0 +1,49 @@
+
+/**
+ * Write a description of class Matkul here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.ArrayList;
+
+public class Matkul {
+    private String kode;
+    private String nama;
+    private int sks;
+    private Dosen dosen;
+    private ArrayList<Mahasiswa> daftarMahasiswa = new ArrayList<>();
+
+    public Matkul(String kode, String nama, int sks) {
+        this.kode = kode;
+        this.nama = nama;
+        this.sks = sks;
+    }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setDosen(Dosen dosen) {
+        this.dosen = dosen;
+    }
+
+    public void tambahMahasiswa(Mahasiswa mhs) {
+        daftarMahasiswa.add(mhs);
+    }
+
+    public void tampilData() {
+        System.out.println(kode + " - " + nama + " (" + sks + " SKS)");
+        if (dosen != null) {
+            System.out.println("Dosen: " + dosen.getNama());
+        }
+        System.out.println("Mahasiswa yang mengambil matkul ini:");
+        for (Mahasiswa m : daftarMahasiswa) {
+            System.out.println("- " + m.getNama() + " (" + m.getNim() + ")");
+        }
+    }
+}
