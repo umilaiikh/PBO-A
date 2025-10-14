@@ -1,0 +1,31 @@
+
+/**
+ * Write a description of class Coffee here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Coffee
+{
+    // instance variables - replace the example below with your own
+    private String name;
+    private double basePrice;
+    
+    /**
+     * Constructor for objects of class Coffee
+     */
+    public Coffee(String name, double basePrice)
+    {
+        // initialise instance variables
+        this.name = name;
+        this.basePrice = basePrice;
+    }
+
+    public String getName(){
+        return name;
+    }
+    
+    public double getBasePrice(){
+        return basePrice;
+    }
+}
