@@ -1,0 +1,53 @@
+
+/**
+ * Write a description of class Inventory here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Inventory
+{
+    // instance variables - replace the example below with your own
+    private int coffee;
+    private int sugar;
+    private int milk;
+    private int water;
+
+    /**
+     * Constructor for objects of class Inventory
+     */
+    public Inventory(int coffee, int sugar, int milk, int water)
+    {
+        // initialise instance variables
+        this.coffee = coffee;
+        this.sugar = sugar;
+        this.milk = milk;
+        this.water = water;
+    }
+
+    public boolean checkStock(){
+        return coffee > 0 && water > 0;
+    }
+    
+    public void useIngredients(boolean addSugar, boolean addMilk){
+        coffee--;
+        water--;
+        if(addSugar) sugar--;
+        if(addMilk) milk--;
+    }
+    
+    public void refill(){
+        coffee = 20;
+        sugar = 20;
+        milk = 20;
+        water = 20;
+    }
+    
+    public void showStatus(){
+        System.out.println("STATUS STOK");
+        System.out.println("Kopi: " + coffee);
+        System.out.println("Gula: " + sugar);
+        System.out.println("Susu: " + milk);
+        System.out.println("Air: " + water);
+    }
+}
