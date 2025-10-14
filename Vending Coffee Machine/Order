@@ -1,0 +1,46 @@
+
+/**
+ * Write a description of class Order here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Order
+{
+    // instance variables - replace the example below with your own
+    private Coffee coffee;
+    private String size;
+    private boolean addSugar;
+    private boolean addMilk;
+    private double totalPrice;
+
+    /**
+     * Constructor for objects of class Order
+     */
+    public Order(Coffee coffee, String size, boolean addSugar, boolean addMilk)
+    {
+        // initialise instance variables
+        this.coffee = coffee;
+        this.size = size;
+        this.addSugar = addSugar;
+        this.addMilk = addMilk;
+        calculateTotal();
+    }
+
+    private void calculateTotal(){
+        totalPrice = coffee.getBasePrice();
+        if(size.equalsIgnoreCase("Medium")) totalPrice += 1000;
+        else if(size.equalsIgnoreCase("Large")) totalPrice += 3000; 
+        
+        if(addSugar) totalPrice += 1000;
+        if(addMilk) totalPrice += 2000;
+    }
+    
+    public double getTotalPrice(){
+        return totalPrice;
+    }
+    
+    public String getDescription(){
+        return coffee.getName() + " (" + size + ")" + (addSugar ? " + Gula" : "") + (addMilk ? " + Susu" : "");
+    }
+}
