@@ -1,0 +1,77 @@
+
+/**
+ * Write a description of class Main here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        Inventory inventory = new Inventory(5, 5, 5, 5);
+        Payment payment = new Payment();
+
+        Coffee espresso = new Coffee("Espresso", 8000);
+        Coffee latte = new Coffee("Latte", 10000);
+        Coffee americano = new Coffee("Americano", 9000);
+        Coffee cappucino = new Coffee("Cappucino", 9000);
+        Coffee macchiato = new Coffee("Macchiato", 11.000);
+        Coffee affogato = new Coffee("Affogato", 10.000);
+
+        System.out.println("VENDING COFFEE MACHINE");
+        System.out.println("1. Espresso");
+        System.out.println("2. Latte");
+        System.out.println("3. Americano");
+        System.out.println("4. Cappucino");
+        System.out.println("5. Macchiato");
+        System.out.println("6. Affogato");
+        System.out.print("Pilih kopi: ");
+        int pilih = sc.nextInt();
+
+        Coffee selected;
+        switch(pilih){
+            case 1: selected = espresso; break;
+            case 2: selected = latte; break;
+            case 3: selected = americano; break;
+            case 4: selected = cappucino; break;
+            case 5: selected = macchiato; break;
+            case 6: selected = affogato; break;
+            default: System.out.println("Pilihan tidak valid."); return;
+        }
+
+        System.out.print("Ukuran (Small/Medium/Large): ");
+        String size = sc.next();
+
+        System.out.print("Tambah gula? (y/n): ");
+        boolean addSugar = sc.next().equalsIgnoreCase("y");
+
+        System.out.print("Tambah susu? (y/n): ");
+        boolean addMilk = sc.next().equalsIgnoreCase("y");
+
+        if(!inventory.checkStock()){
+            System.out.println("Stok habis! Harap isi ulang");
+            return;
+        }
+
+        Order order = new Order(selected, size, addSugar, addMilk);
+        System.out.println("\nPesanan Anda: " + order.getDescription());
+        System.out.println("Total harga: Rp " + order.getTotalPrice());
+
+        System.out.print("Masukkan uang: Rp ");
+        double uang = sc.nextDouble();
+
+        if(payment.processPayment(order.getTotalPrice(), uang)){
+            inventory.useIngredients(addSugar, addMilk);
+            System.out.println("Kopi sedang diproses...");
+            for(long i = 0; i < 2_000_000_000L; i++){
+                // kosong: cuma buat nunda waktu
+            }
+            System.out.println("Kopi Anda siap, silahkan di ambil! Terima kasih telah order disini");
+        }
+
+        System.out.println();
+        inventory.showStatus();
+    }
+}
