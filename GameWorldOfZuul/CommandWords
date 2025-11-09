@@ -1,0 +1,21 @@
+
+/**
+ * Write a description of class CommandWords here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.Arrays;
+import java.util.List;
+
+public class CommandWords {
+    private List<String> validCommands = Arrays.asList("go", "help", "look", "quit");
+
+    public boolean isCommand(String aString) {
+        return validCommands.contains(aString);
+    }
+
+    public void showAll() {
+        System.out.println("Perintah yang tersedia: " + validCommands);
+    }
+}
