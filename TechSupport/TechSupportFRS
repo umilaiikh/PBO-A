@@ -1,0 +1,34 @@
+
+/**
+ * Write a description of class TechSupportFRS here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.Scanner;
+
+public class TechSupportFRS {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+         Responder responder = new Responder();
+
+        System.out.println("=== Sistem Bantuan FRS ===");
+        System.out.println("Ketik masalah Anda");
+        System.out.println("Ketik 'exit' untuk keluar.\n");
+
+        while (true) {
+            System.out.print("Anda: ");
+            String userInput = in.nextLine().toLowerCase();
+
+            if (userInput.equals("exit")) {
+                System.out.println("Terima kasih telah menggunakan sistem bantuan FRS. Semoga membantu!");
+                break;
+            }
+
+            String response = responder.getResponse(userInput);
+            System.out.println(response);
+        }
+
+        in.close();
+    }
+}
