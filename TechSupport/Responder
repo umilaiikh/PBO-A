@@ -1,0 +1,41 @@
+
+/**
+ * Write a description of class Responder here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.HashMap;
+import java.util.Random;
+
+public class Responder {
+    private HashMap<String, String> responses;
+    private String[] defaultResponses = {
+        "Bisa dijelaskan lebih spesifik?",
+        "Silakan beri detail masalah Anda lebih lengkap.",
+    };
+    private Random random;
+
+    public Responder() {
+        responses = new HashMap<>();
+        random = new Random();
+
+        responses.put("kelas penuh", "Kelas sudah mencapai kapasitas maksimum. Silakan pilih kelas lain atau konfirmasi ke TU.");
+        responses.put("login", "Jika tidak bisa login, silakan pastikan password Anda benar. Jika masih gagal, hubungi DPTSI.");
+        responses.put("kode salah", "Kode mata kuliah tidak valid. Pastikan sesuai dengan katalog mata kuliah.");
+        responses.put("ukt", "Anda belum melunasi UKT. Silakan lakukan pembayaran terlebih dahulu untuk mengakses FRS.");
+        responses.put("jadwal", "Terjadi bentrok jadwal. Coba ubah salah satu kelas agar tidak bertabrakan.");
+        responses.put("ipk", "IPK Anda belum memenuhi syarat SKS tersebut. Konsultasikan dengan dosen wali Anda.");
+        responses.put("izin", "Retake atau perubahan kelas memerlukan izin dari dosen pembimbing akademik.");
+    }
+
+    public String getResponse(String userInput) {
+        for (String key : responses.keySet()) {
+            if (userInput.contains(key)) {
+                return responses.get(key);
+            }
+        }
+        int index = random.nextInt(defaultResponses.length);
+        return defaultResponses[index];
+    }
+}
