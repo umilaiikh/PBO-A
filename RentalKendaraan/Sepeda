@@ -1,0 +1,21 @@
+
+/**
+ * Write a description of class Sepeda here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Sepeda extends Kendaraan {
+    private String jenis;
+
+    public Sepeda(String merk, String model, int tahunProduksi, String jenis) {
+        super(merk, model, tahunProduksi);
+        this.jenis = jenis;
+    }
+
+    @Override
+    public void tampilInfo() {
+        System.out.println("- Sepeda: " + getMerk() + " " + getModel() +
+                " (" + getTahunProduksi() + "), Jenis: " + jenis);
+    }
+}
