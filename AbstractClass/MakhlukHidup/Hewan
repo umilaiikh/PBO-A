@@ -1,0 +1,29 @@
+
+/**
+ * Write a description of class Hewan here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+class Hewan extends MakhlukHidup {
+    private String jenisHewan;
+
+    public Hewan(String nama, String jenisHewan) {
+        super(nama, "Hewan");
+        this.jenisHewan = jenisHewan;
+    }
+
+    @Override
+    public void bernafas() {
+        System.out.println(nama + " bernafas menggunakan paru-paru.");
+    }
+
+    @Override
+    public void bergerak() {
+        System.out.println(nama + " bergerak cepat dan lincah, terutama saat mengejar mangsa.");
+    }
+
+    public void info() {
+        System.out.println(nama + " termasuk hewan " + jenisHewan + ".");
+    }
+}
