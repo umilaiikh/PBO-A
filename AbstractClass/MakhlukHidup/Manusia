@@ -1,0 +1,29 @@
+
+/**
+ * Write a description of class Manusia here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+class Manusia extends MakhlukHidup {
+    private String pekerjaan;
+
+    public Manusia(String nama, String pekerjaan) {
+        super(nama, "Manusia");
+        this.pekerjaan = pekerjaan;
+    }
+
+    @Override
+    public void bernafas() {
+        System.out.println(nama + " bernafas menggunakan paru-paru dan membutuhkan oksigen.");
+    }
+
+    @Override
+    public void bergerak() {
+        System.out.println(nama + " berjalan tegak menggunakan dua kaki.");
+    }
+
+    public void bekerja() {
+        System.out.println(nama + " bekerja sebagai " + pekerjaan + ".");
+    }
+}
