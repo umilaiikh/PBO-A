@@ -1,0 +1,79 @@
+
+/**
+ * Write a description of class Comment here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Comment {
+    private String author;
+    private String text;
+    private int rating;     
+    private int votes;       
+
+    /**
+     * Create a new comment with given data.
+     *
+     * @param author The name of the comment's author.
+     * @param text   The text of the comment.
+     * @param rating The rating given for the item (1–5).
+     */
+    public Comment(String author, String text, int rating) {
+        this.author = author;
+        this.text = text;
+        this.rating = rating;
+        this.votes = 0;
+    }
+
+    /**
+     * Return the author of this comment.
+     */
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * Return the rating of this comment.
+     */
+    public int getRating() {
+        return rating;
+    }
+
+    /**
+     * Return the text of this comment.
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Return the current vote count.
+     */
+    public int getVoteCount() {
+        return votes;
+    }
+
+    /**
+     * Upvote this comment (counted as helpful).
+     */
+    public void upvote() {
+        votes++;
+    }
+
+    /**
+     * Downvote this comment (counted as unhelpful).
+     */
+    public void downvote() {
+        votes--;
+    }
+
+    /**
+     * Return all comment details in a readable format.
+     */
+    public String getFullDetails() {
+        String details = author + " (rating: " + rating + ")\n";
+        details += text + "\n";
+        details += "Votes: " + votes;
+        return details;
+    }
+}
