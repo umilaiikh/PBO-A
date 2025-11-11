@@ -1,0 +1,30 @@
+
+/**
+ * Write a description of class Kendaraan here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Kendaraan {
+    private String merk;
+    private String model;
+    private int tahunProduksi;
+    private boolean disewa;
+
+    public Kendaraan(String merk, String model, int tahunProduksi) {
+        this.merk = merk;
+        this.model = model;
+        this.tahunProduksi = tahunProduksi;
+        this.disewa = false;
+    }
+
+    public String getMerk() { return merk; }
+    public String getModel() { return model; }
+    public int getTahunProduksi() { return tahunProduksi; }
+    public boolean isDisewa() { return disewa; }
+    public void setDisewa(boolean disewa) { this.disewa = disewa; }
+
+    public void tampilInfo() {
+        System.out.println("- " + merk + " " + model + " (" + tahunProduksi + ")");
+    }
+}
