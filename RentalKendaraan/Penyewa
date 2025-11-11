@@ -1,0 +1,31 @@
+
+/**
+ * Write a description of class Penyewa here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Penyewa {
+    private String nama;
+    private Kendaraan kendaraan;
+
+    public Penyewa(String nama, Kendaraan kendaraan) {
+        this.nama = nama;
+        this.kendaraan = kendaraan;
+        kendaraan.setDisewa(true);
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public Kendaraan getKendaraan() {
+        return kendaraan;
+    }
+
+    public void tampilInfo() {
+        System.out.println("Nama: " + nama);
+        System.out.print("  Kendaraan: ");
+        kendaraan.tampilInfo();
+    }
+}
