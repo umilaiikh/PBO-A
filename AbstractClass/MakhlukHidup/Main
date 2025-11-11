@@ -1,0 +1,33 @@
+
+/**
+ * Write a description of class Main here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class Main {
+    public static void main(String[] args) {
+        Manusia m1 = new Manusia("Umi", "Mahasiswa");
+        Hewan h1 = new Hewan("Harimau", "Karnivora");
+        Tumbuhan t1 = new Tumbuhan("Melati", "Berbunga");
+
+        System.out.println("=== Makhluk Hidup ===\n");
+
+        m1.bernafas();
+        m1.bergerak();
+        m1.tumbuh();
+        m1.bekerja();
+        System.out.println();
+
+        h1.bernafas();
+        h1.bergerak();
+        h1.tumbuh();
+        h1.info();
+        System.out.println();
+
+        t1.bernafas();
+        t1.bergerak();
+        t1.tumbuh();
+        t1.info();
+    }
+}
