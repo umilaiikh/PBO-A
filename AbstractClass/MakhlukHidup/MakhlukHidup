@@ -1,0 +1,27 @@
+
+/**
+ * Write a description of class MakhlukHidup here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+abstract class MakhlukHidup {
+    protected String nama;
+    protected String kategori;
+
+    public MakhlukHidup(String nama, String kategori) {
+        this.nama = nama;
+        this.kategori = kategori;
+    }
+
+    public abstract void bernafas();
+    public abstract void bergerak();
+
+    public void tumbuh() {
+        System.out.println(nama + " tumbuh dan berkembang sebagai " + kategori + ".");
+    }
+
+    public void tampilkanKategori() {
+        System.out.println("=== Kategori: " + kategori.toUpperCase() + " ===");
+    }
+}
