@@ -1,0 +1,29 @@
+
+/**
+ * Write a description of class Tumbuhan here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+class Tumbuhan extends MakhlukHidup {
+    private String jenisTumbuhan;
+
+    public Tumbuhan(String nama, String jenisTumbuhan) {
+        super(nama, "Tumbuhan");
+        this.jenisTumbuhan = jenisTumbuhan;
+    }
+
+    @Override
+    public void bernafas() {
+        System.out.println(nama + " melakukan fotosintesis untuk menghasilkan makanannya sendiri.");
+    }
+
+    @Override
+    public void bergerak() {
+        System.out.println(nama + " berkembang biak dengan stek batang (vegetatif) atau biji.");
+    }
+
+    public void info() {
+        System.out.println(nama + " merupakan tumbuhan " + jenisTumbuhan + ".");
+    }
+}
