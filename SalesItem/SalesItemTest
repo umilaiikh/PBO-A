@@ -1,0 +1,68 @@
+/**
+ * The test class SalesItemTest.
+ *
+ * @author  (your name)
+ * @version (a version number or a date)
+ */
+
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Unit tests for the SalesItem class.
+ */
+public class SalesItemTest {
+    private SalesItem item;
+
+    @Before
+    public void setUp() {
+        item = new SalesItem("Laptop", 1500000);
+    }
+
+    @Test
+    public void testAddCommentSuccess() {
+        boolean result = item.addComment("Umi", "Bagus banget!", 5);
+        assertTrue(result);
+        assertEquals(1, item.getNumberOfComments());
+    }
+
+    @Test
+    public void testRejectDuplicateAuthor() {
+        item.addComment("Umi", "Produk keren!", 4);
+        boolean result = item.addComment("Umi", "Mau komentar lagi", 5);
+        assertFalse(result);
+        assertEquals(1, item.getNumberOfComments());
+    }
+
+    @Test
+    public void testInvalidRatingTooLow() {
+        boolean result = item.addComment("Nashwa", "Kurang bagus", 0);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testInvalidRatingTooHigh() {
+        boolean result = item.addComment("Tata", "Luar biasa", 10);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testUpvoteAndMostHelpful() {
+        item.addComment("Tina", "Sangat puas!", 5);
+        item.addComment("Nabilah", "Oke", 4);
+
+        item.upvoteComment(0);
+        item.upvoteComment(0);
+
+        Comment best = item.findMostHelpfulComment();
+        assertEquals("Tina", best.getAuthor());
+        assertEquals(2, best.getVoteCount());
+    }
+
+    @Test
+    public void testShowInfoDoesNotCrash() {
+        item.addComment("Callista", "Cukup bagus", 4);
+        item.showInfo();
+    }
+}
