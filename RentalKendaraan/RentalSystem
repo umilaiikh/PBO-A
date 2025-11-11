@@ -1,0 +1,118 @@
+
+/**
+ * Write a description of class RentalSystem here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class RentalSystem {
+    private ArrayList<Kendaraan> kendaraanList;
+    private ArrayList<Penyewa> penyewaList;
+
+    public RentalSystem() {
+        kendaraanList = new ArrayList<>();
+        penyewaList = new ArrayList<>();
+
+        kendaraanList.add(new Mobil("Toyota", "Avanza", 2020, 4));
+        kendaraanList.add(new Mobil("Honda", "Civic", 2021, 4));
+        kendaraanList.add(new Motor("Yamaha", "NMAX", 2022, 2));
+        kendaraanList.add(new Motor("Honda", "Beat", 2019, 2));
+        kendaraanList.add(new Sepeda("Polygon", "Helios", 2020, "Balap"));
+        kendaraanList.add(new Sepeda("United", "Miami", 2021, "BMX"));
+    }
+
+    public void tampilkanKendaraan() {
+        System.out.println("\n=== Daftar Kendaraan Tersedia ===");
+        for (int i = 0; i < kendaraanList.size(); i++) {
+            Kendaraan k = kendaraanList.get(i);
+            if (!k.isDisewa()) {
+                System.out.print((i + 1) + ". ");
+                k.tampilInfo();
+            }
+        }
+    }
+
+    public void tampilkanPenyewa() {
+        System.out.println("\n=== Daftar Penyewa ===");
+        if (penyewaList.isEmpty()) {
+            System.out.println("Belum ada penyewa.");
+            return;
+        }
+        for (Penyewa p : penyewaList) {
+            p.tampilInfo();
+        }
+    }
+
+    public void tambahPenyewa(Scanner sc) {
+        tampilkanKendaraan();
+        System.out.print("\nPilih nomor kendaraan yang ingin disewa: ");
+        int pilihan = sc.nextInt();
+        sc.nextLine();
+
+        if (pilihan < 1 || pilihan > kendaraanList.size()) {
+            System.out.println("Pilihan tidak valid!");
+            return;
+        }
+
+        Kendaraan k = kendaraanList.get(pilihan - 1);
+        if (k.isDisewa()) {
+            System.out.println("Kendaraan sudah disewa!");
+            return;
+        }
+
+        System.out.print("Masukkan nama penyewa: ");
+        String nama = sc.nextLine();
+
+        Penyewa p = new Penyewa(nama, k);
+        penyewaList.add(p);
+        System.out.println("Penyewa berhasil ditambahkan!");
+    }
+
+    public void hapusPenyewa(Scanner sc) {
+        tampilkanPenyewa();
+        System.out.print("\nMasukkan nama penyewa yang ingin dihapus: ");
+        String nama = sc.nextLine();
+
+        for (int i = 0; i < penyewaList.size(); i++) {
+            Penyewa p = penyewaList.get(i);
+            if (p.getNama().equalsIgnoreCase(nama)) {
+                p.getKendaraan().setDisewa(false);
+                penyewaList.remove(i);
+                System.out.println("Penyewa berhasil dihapus!");
+                return;
+            }
+        }
+        System.out.println("❌ Penyewa tidak ditemukan!");
+    }
+    public static void main(String[] args) {
+        RentalSystem rental = new RentalSystem();
+        Scanner sc = new Scanner(System.in);
+        int pilihan;
+
+        do {
+            System.out.println("\n===== MENU RENTAL KENDARAAN =====");
+            System.out.println("1. Lihat daftar kendaraan");
+            System.out.println("2. Lihat daftar penyewa");
+            System.out.println("3. Tambah penyewa");
+            System.out.println("4. Hapus penyewa");
+            System.out.println("0. Keluar");
+            System.out.print("Pilih menu: ");
+            pilihan = sc.nextInt();
+            sc.nextLine();
+
+            switch (pilihan) {
+                case 1 -> rental.tampilkanKendaraan();
+                case 2 -> rental.tampilkanPenyewa();
+                case 3 -> rental.tambahPenyewa(sc);
+                case 4 -> rental.hapusPenyewa(sc);
+                case 0 -> System.out.println("Terima kasih telah menggunakan sistem rental!");
+                default -> System.out.println("Pilihan tidak valid!");
+            }
+        } while (pilihan != 0);
+
+        sc.close();
+    }
+}
