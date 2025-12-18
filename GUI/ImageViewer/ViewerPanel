@@ -1,0 +1,39 @@
+
+/**
+ * Write a description of class ViewerPanel here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import javax.swing.*;
+import java.awt.*;
+
+public class ViewerPanel extends JPanel {
+
+    private Gambar gambar;
+
+    public ViewerPanel() {
+        setPreferredSize(new Dimension(420, 300));
+    }
+
+    public void setGambar(Gambar g) {
+        gambar = g;
+        if (gambar != null) {
+            setPreferredSize(new Dimension(gambar.getW(), gambar.getH()));
+        } else {
+            setPreferredSize(new Dimension(420, 300));
+        }
+        revalidate();
+        repaint();
+    }
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (gambar == null) {
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(0, 0, getWidth(), getHeight());
+            return;
+        }
+        g.drawImage(gambar.getImage(), 0, 0, null);
+    }
+}
