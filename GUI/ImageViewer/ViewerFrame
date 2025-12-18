@@ -1,0 +1,71 @@
+
+/**
+ * Write a description of class ViewerFrame here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import javax.swing.*;
+import java.awt.*;
+
+public class ViewerFrame extends AppFrame {
+
+    private ViewerPanel panel;
+    private JLabel status;
+
+    private JMenuItem miOpen, miClose, miQuit;
+    private JMenuItem miDarker, miLighter, miThreshold;
+
+    public ViewerFrame() {
+        super("Image Viewer");
+        buildUI();
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void buildUI() {
+        panel = new ViewerPanel();
+        status = new JLabel("Ready");
+
+        setLayout(new BorderLayout());
+        add(panel, BorderLayout.CENTER);
+        add(status, BorderLayout.SOUTH);
+
+        JMenuBar bar = new JMenuBar();
+        JMenu mFile = new JMenu("File");
+        JMenu mFilter = new JMenu("Filter");
+
+        miOpen = new JMenuItem("Open");
+        miClose = new JMenuItem("Close");
+        miQuit = new JMenuItem("Quit");
+
+        miDarker = new JMenuItem("Darker");
+        miLighter = new JMenuItem("Lighter");
+        miThreshold = new JMenuItem("Threshold");
+
+        mFile.add(miOpen);
+        mFile.add(miClose);
+        mFile.addSeparator();
+        mFile.add(miQuit);
+
+        mFilter.add(miDarker);
+        mFilter.add(miLighter);
+        mFilter.add(miThreshold);
+
+        bar.add(mFile);
+        bar.add(mFilter);
+        setJMenuBar(bar);
+    }
+
+    public ViewerPanel getPanel() { return panel; }
+    public void setStatus(String s) { status.setText(s); }
+
+    public JMenuItem openItem() { return miOpen; }
+    public JMenuItem closeItem() { return miClose; }
+    public JMenuItem quitItem() { return miQuit; }
+
+    public JMenuItem darkerItem() { return miDarker; }
+    public JMenuItem lighterItem() { return miLighter; }
+    public JMenuItem thresholdItem() { return miThreshold; }
+}
