@@ -1,0 +1,68 @@
+
+/**
+ * Write a description of class LoginFrame here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import javax.swing.*;
+import java.awt.*;
+
+public class LoginFrame extends AppFrame {
+
+    private JTextField tfUser;
+    private JPasswordField tfPass;
+    private JButton btnLogin;
+    private JButton btnClear;
+    private JLabel lblStatus;
+
+    public LoginFrame() {
+        super("User Login");
+        buildUI();
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    private void buildUI() {
+        tfUser = new JTextField(16);
+        tfPass = new JPasswordField(16);
+        btnLogin = new JButton("Login");
+        btnClear = new JButton("Clear");
+        lblStatus = new JLabel(" ");
+
+        JPanel form = new JPanel(new GridLayout(3, 2, 8, 8));
+        form.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        form.add(new JLabel("Username"));
+        form.add(tfUser);
+        form.add(new JLabel("Password"));
+        form.add(tfPass);
+
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        buttons.add(btnClear);
+        buttons.add(btnLogin);
+
+        form.add(new JLabel(""));
+        form.add(buttons);
+
+        setLayout(new BorderLayout());
+        add(lblStatus, BorderLayout.NORTH);
+        add(form, BorderLayout.CENTER);
+    }
+
+    public String getUsername() { return tfUser.getText().trim(); }
+    public String getPassword() { return new String(tfPass.getPassword()); }
+
+    public void setStatus(String s) { lblStatus.setText(s); }
+
+    public void clear() {
+        tfUser.setText("");
+        tfPass.setText("");
+        setStatus(" ");
+        tfUser.requestFocus();
+    }
+
+    public void onLogin(Runnable r) { btnLogin.addActionListener(e -> r.run()); }
+    public void onClear(Runnable r) { btnClear.addActionListener(e -> r.run()); }
+}
