@@ -1,0 +1,86 @@
+
+/**
+ * Write a description of class ViewerController here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import javax.swing.*;
+import java.io.File;
+
+public class ViewerController extends BaseController {
+
+    private final ViewerFrame frame;
+    private Gambar gambar;
+
+    private final JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));
+
+    public ViewerController(ViewerFrame frame) {
+        this.frame = frame;
+        wire();
+        updateState();
+    }
+
+    private void wire() {
+        frame.openItem().addActionListener(e -> open());
+        frame.closeItem().addActionListener(e -> close());
+        frame.quitItem().addActionListener(e -> quit());
+
+        frame.darkerItem().addActionListener(e -> apply("darker"));
+        frame.lighterItem().addActionListener(e -> apply("lighter"));
+        frame.thresholdItem().addActionListener(e -> apply("threshold"));
+    }
+
+    private void open() {
+        int r = chooser.showOpenDialog(frame);
+        if (r != JFileChooser.APPROVE_OPTION) return;
+
+        File f = chooser.getSelectedFile();
+        Gambar g = Gambar.load(f);
+
+        if (g == null) {
+            JOptionPane.showMessageDialog(frame, "Gambar gagal dibuka", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        gambar = g;
+        frame.getPanel().setGambar(gambar);
+        frame.setStatus("Loaded: " + f.getName());
+        frame.pack();
+        updateState();
+    }
+
+    private void close() {
+        gambar = null;
+        frame.getPanel().setGambar(null);
+        frame.setStatus("No image");
+        updateState();
+    }
+
+    private void quit() {
+        frame.dispose();
+        System.exit(0);
+    }
+
+    private void apply(String mode) {
+        if (gambar == null) {
+            frame.setStatus("No image loaded");
+            return;
+        }
+
+        if (mode.equals("darker")) gambar.darker();
+        else if (mode.equals("lighter")) gambar.lighter();
+        else if (mode.equals("threshold")) gambar.threshold();
+
+        frame.getPanel().repaint();
+        frame.setStatus("Applied: " + mode);
+    }
+
+    private void updateState() {
+        boolean has = (gambar != null);
+        frame.closeItem().setEnabled(has);
+        frame.darkerItem().setEnabled(has);
+        frame.lighterItem().setEnabled(has);
+        frame.thresholdItem().setEnabled(has);
+    }
+}
