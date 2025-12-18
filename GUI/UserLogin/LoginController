@@ -1,0 +1,41 @@
+
+/**
+ * Write a description of class LoginController here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+import javax.swing.*;
+
+public class LoginController extends BaseController {
+
+    private final LoginFrame frame;
+
+    public LoginController(LoginFrame frame) {
+        this.frame = frame;
+        wire();
+    }
+
+    private void wire() {
+        frame.onLogin(() -> login());
+        frame.onClear(() -> frame.clear());
+    }
+
+    private void login() {
+        String u = frame.getUsername();
+        String p = frame.getPassword();
+
+        if (u.isEmpty() || p.isEmpty()) {
+            frame.setStatus("Isi username & password!");
+            return;
+        }
+
+        if (u.equals("admin") && p.equals("123")) {
+            JOptionPane.showMessageDialog(frame, "Login berhasil", "Info", JOptionPane.INFORMATION_MESSAGE);
+            frame.setStatus("Login sukses");
+        } else {
+            JOptionPane.showMessageDialog(frame, "Username/password salah", "Error", JOptionPane.ERROR_MESSAGE);
+            frame.setStatus("Login gagal");
+        }
+    }
+}
